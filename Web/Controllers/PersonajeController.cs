@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.Services;
 
-namespace Web.Crontrollers
+namespace Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

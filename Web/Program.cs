@@ -19,6 +19,11 @@ builder.Services.AddControllers();
 builder.Services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
 builder.Services.AddScoped(typeof(IPersonajeService), typeof(PersonajeService));
 builder.Services.AddScoped(typeof(IHabilidadService), typeof(HabilidadService));
+
+builder.Services.AddScoped(typeof(IEquipoService), typeof(EquipoService));
+builder.Services.AddScoped(typeof(IMisionService), typeof(MisionService));
+builder.Services.AddScoped(typeof(IUbicacionService), typeof(UbicacionService));
+
 builder.Services.AddScoped(typeof(IPersonajeRepository), typeof(PersonajeRepository));
 builder.Services.AddScoped(typeof(IHabilidadRepository), typeof(HabilidadRepository));
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));

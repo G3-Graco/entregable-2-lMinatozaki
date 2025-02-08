@@ -18,7 +18,5 @@ namespace Infrastructure.Repositories
             return await base.dbSet.Include(x => x.habilidades).ToListAsync();
         }
 
-
-
     }
 }
