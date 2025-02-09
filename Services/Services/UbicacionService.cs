@@ -78,18 +78,32 @@ namespace Services.Services
             return ubicacion;
         }
 
-        public async Task<string> Moverse(int personajeNivel, int nuevaUbicacionId)
+        public async Task<string> Moverse(int personajeId, int nuevaUbicacionId)
         {
             var ubicacion = await _unitOfWork.UbicacionRepository.GetByIdAsync(nuevaUbicacionId);
             if (ubicacion == null)
             {
-                throw new Exception("La nueva ubicación no existe :/");
+                throw new Exception("La ubicación no existe :/");
+            }
+
+            var personaje = await _unitOfWork.PersonajeRepository.GetByIdAsync(personajeId);
+            if (personaje == null)
+            {
+                throw new Exception("El personaje no existe");
+            }
+
+            var enemigos = await _unitOfWork.EnemigoRepository.GetAllAsync();
+            var enemigosFiltrados = enemigos.Where(e => e.nivelAmenaza >= personaje.nivel).ToList();
+
+            if (enemigosFiltrados.Count == 0)
+            {
+                throw new Exception("No hay enemigos disponibles con el nivel de amenaza adecuado !!");
             }
 
             Random random = new Random();
-            int nivelDeAmenaza = random.Next(personajeNivel, personajeNivel + 5); //esto hace que el nivel de amenaza >= nivel del personaje
+            var enemigoEncontrado = enemigosFiltrados[random.Next(enemigosFiltrados.Count)];
 
-            return $"El personaje se ha movido a la ubicacion '{ubicacion.nombre}' con el clima '{ubicacion.clima}'. Se encontró con un enemigo de nivel de amenaza {nivelDeAmenaza}";
+            return $"El personaje '{personaje.nombre}' se ha movido a la ubicación '{ubicacion.nombre}' con un clima '{ubicacion.clima}'. Se encontró con el enemigo '{enemigoEncontrado.nombre}' de nivel de amenaza {enemigoEncontrado.nivelAmenaza}!";
         }
     }
 }

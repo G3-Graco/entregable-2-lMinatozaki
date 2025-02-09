@@ -84,11 +84,11 @@ namespace Web.Controllers
         }
 
         [HttpPost("{id}/moverse")]
-        public async Task<ActionResult<string>> Moverse(int id, [FromQuery] int personajeNivel)
+        public async Task<ActionResult<string>> Moverse(int id, [FromQuery] int personajeId)
         {
             try
             {
-                var resultado = await _ubicacionService.Moverse(personajeNivel, id);
+                var resultado = await _ubicacionService.Moverse(personajeId, id);
                 return Ok(resultado);
             }
             catch (Exception ex)

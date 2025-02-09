@@ -23,6 +23,7 @@ builder.Services.AddScoped(typeof(IHabilidadService), typeof(HabilidadService));
 builder.Services.AddScoped(typeof(IEquipoService), typeof(EquipoService));
 builder.Services.AddScoped(typeof(IMisionService), typeof(MisionService));
 builder.Services.AddScoped(typeof(IUbicacionService), typeof(UbicacionService));
+builder.Services.AddScoped(typeof(IEnemigoService), typeof(EnemigoService));
 
 builder.Services.AddScoped(typeof(IPersonajeRepository), typeof(PersonajeRepository));
 builder.Services.AddScoped(typeof(IHabilidadRepository), typeof(HabilidadRepository));
